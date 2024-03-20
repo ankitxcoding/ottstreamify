@@ -4,7 +4,7 @@ const Header = () => {
   const networkStatus = useStatus();
 
   return (
-    <div className="flex w-screen absolute justify-between bg-gradient-to-b from-black z-10">
+    <div className="flex justify-between bg-gradient-to-b from-black absolute top-0 w-full">
       <div className="w-52 mx-4">
         <img src="/assets/logo.png" alt="logo" />
       </div>
