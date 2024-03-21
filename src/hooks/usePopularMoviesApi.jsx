@@ -1,21 +1,39 @@
 import { OPTIONS } from "../utils/constants";
 import { useEffect, useState } from "react";
 
-const usePopularMoviesApi = () => {
-  const [popularList, setPopularList] = useState([]);
-  const moviesList = async () => {
-    const data = await fetch(
-      "https://api.themoviedb.org/3/movie/popular?&page=1",
-      OPTIONS
-    );
-    const json = await data.json();
-    setPopularList(json.results);
+const usePopularMoviesApi = (page) => {
+  const [popularMovies, setPopularMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [hasMore, setHasMore] = useState(true);
+
+  const fetchPopularMovies = async (pageNumber) => {
+    try {
+      const data = await fetch(
+        `https://api.themoviedb.org/3/movie/popular?&page=${pageNumber}`,
+        OPTIONS
+      );
+      if (!data.ok) {
+        throw new Error("Failed to fetch");
+      }
+      const json = await data.json();
+      if (json.results.length === 0) {
+        setHasMore(false);
+      } else {
+        setPopularMovies([...popularMovies, ...json.results]);
+      }
+      setLoading(false);
+    } catch (error) {
+      setError("Failed to fetch popular movies!");
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
-    moviesList();
-  }, []);
+    fetchPopularMovies(page);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [page]);
 
-  return popularList;
+  return { popularMovies, loading, error, hasMore, fetchPopularMovies };
 };
 export default usePopularMoviesApi;
