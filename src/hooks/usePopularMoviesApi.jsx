@@ -1,7 +1,7 @@
 import { OPTIONS } from "../utils/constants";
 import { useEffect, useState } from "react";
 
-const usePopularMoviesList = () => {
+const usePopularMoviesApi = () => {
   const [popularList, setPopularList] = useState([]);
   const moviesList = async () => {
     const data = await fetch(
@@ -18,4 +18,4 @@ const usePopularMoviesList = () => {
 
   return popularList;
 };
-export default usePopularMoviesList;
+export default usePopularMoviesApi;
