@@ -8,7 +8,7 @@ const MovieDetails = () => {
   const { movieId } = useParams();
   const movieDetails = useMovieDetails(movieId);
   const movieTrailer = useMovieTrailer(movieId);
-  const [showVideo, setShowVideo] = useState(false);
+  const [showTrailer, setShowTrailer] = useState(false);
   console.log(movieDetails);
   const {
     title,
@@ -25,7 +25,7 @@ const MovieDetails = () => {
     genres && genres.map((genre) => genre.name).join(", ");
 
   const toggleVideo = () => {
-    setShowVideo(!showVideo);
+    setShowTrailer(!showTrailer);
   };
 
   return (
@@ -69,7 +69,7 @@ const MovieDetails = () => {
             onClick={toggleVideo}
             className="m-1 px-2 py-1 text-white font-semibold bg-blue-500 rounded-md"
           >
-            {showVideo ? "Hide Trailer" : "Watch Trailer"}
+            {showTrailer ? "Hide Trailer" : "Watch Trailer"}
           </button>
           <a href={homepage} target="_blank" rel="noopener noreferrer">
             <button className="m-1 px-2 py-1 text-black font-semibold bg-white rounded-md">
@@ -78,7 +78,7 @@ const MovieDetails = () => {
           </a>
         </div>
       </div>
-      {showVideo && (
+      {showTrailer && (
         <div className="video-container absolute">
           <iframe
             width="1080"
