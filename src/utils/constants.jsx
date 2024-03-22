@@ -8,3 +8,5 @@ export const OPTIONS = {
 };
 
 export const BASE_URL = "https://image.tmdb.org/t/p/w500";
+
+export const IMDB_URL = "https://www.imdb.com/title/";
