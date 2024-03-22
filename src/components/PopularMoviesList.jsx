@@ -8,7 +8,8 @@ const PopularMoviesList = (prop) => {
   const [showOverview, setShowOverview] = useState(false);
   console.log(moviesList);
 
-  const toggleOverview = () => {
+  const toggleOverview = (e) => {
+    e.preventDefault();
     setShowOverview(!showOverview);
   };
 
@@ -17,7 +18,7 @@ const PopularMoviesList = (prop) => {
       <img src={BASE_URL + poster_path} alt={original_title} />
       <button
         onClick={toggleOverview}
-        className="absolute top-0 right-0 px-2 py-1 bg-black text-white text-xs font-semibold rounded-md"
+        className="absolute top-0 right-0 px-2 py-1 bg-black text-white text-xs font-semibold rounded-md hover:text-[#E50914]"
       >
         {showOverview ? "Hide Overview" : "Overview"}
       </button>

@@ -2,6 +2,7 @@ import PopularMoviesList from "./PopularMoviesList";
 import usePopularMoviesApi from "../hooks/usePopularMoviesApi";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Body = () => {
   const [page, setPage] = useState(1);
@@ -36,7 +37,9 @@ const Body = () => {
       >
         <div className="flex flex-wrap justify-center mt-20">
           {popularMovies.map((movie) => (
-            <PopularMoviesList key={movie.id} moviesList={movie} />
+            <Link key={movie.id} to={"movie/" + movie.id}>
+              <PopularMoviesList moviesList={movie} />
+            </Link>
           ))}
         </div>
       </InfiniteScroll>
