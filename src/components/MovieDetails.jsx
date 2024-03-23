@@ -1,15 +1,22 @@
 import { useParams } from "react-router-dom";
 import useMovieDetails from "../hooks/useMovieDetails";
-import { BASE_POSTER_URL, IMDB_URL } from "../utils/constants";
+import {
+  BASE_BACKDROP_URL,
+  BASE_POSTER_URL,
+  IMDB_URL,
+} from "../utils/constants";
 import useMovieTrailer from "../hooks/useMovieTrailer";
 import { useState } from "react";
+import useMovieBackdropImg from "../hooks/useMovieBackdropImg";
 
 const MovieDetails = () => {
   const { movieId } = useParams();
   const movieDetails = useMovieDetails(movieId);
   const movieTrailer = useMovieTrailer(movieId);
+  const backdropImage = useMovieBackdropImg(movieId);
   const [showTrailer, setShowTrailer] = useState(false);
-  console.log(movieDetails);
+  console.log(backdropImage.backdrops && backdropImage.backdrops[0].file_path);
+  const bgImg = backdropImage.backdrops && backdropImage.backdrops[0].file_path;
   const {
     title,
     original_title,
@@ -29,7 +36,13 @@ const MovieDetails = () => {
   };
 
   return (
-    <div className="bg-[url('/assets/bg1.jpg')] bg-cover flex flex-col justify-center items-center h-screen">
+    <div
+      className="bg-[url('/assets/bg1.jpg')] bg-cover flex flex-col justify-center items-center h-screen"
+      style={{
+        backgroundImage: `url(${BASE_BACKDROP_URL + bgImg})`,
+        backgroundSize: "cover",
+      }}
+    >
       <div className="flex flex-col justify-center items-center rounded-md overflow-hidden bg-black bg-opacity-50">
         <img src={BASE_POSTER_URL + backdrop_path} alt={original_title} />
         <h1 className="m-1 text-white text-3xl font-bold">{title}</h1>
