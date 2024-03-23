@@ -7,6 +7,8 @@ export const OPTIONS = {
   },
 };
 
-export const BASE_URL = "https://image.tmdb.org/t/p/w500";
+export const BASE_POSTER_URL = "https://image.tmdb.org/t/p/w500";
+
+export const BASE_BACKDROP_URL = "https://image.tmdb.org/t/p/original";
 
 export const IMDB_URL = "https://www.imdb.com/title/";

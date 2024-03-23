@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import useMovieDetails from "../hooks/useMovieDetails";
-import { BASE_URL, IMDB_URL } from "../utils/constants";
+import { BASE_POSTER_URL, IMDB_URL } from "../utils/constants";
 import useMovieTrailer from "../hooks/useMovieTrailer";
 import { useState } from "react";
 
@@ -31,7 +31,7 @@ const MovieDetails = () => {
   return (
     <div className="bg-[url('/assets/bg1.jpg')] bg-cover flex flex-col justify-center items-center h-screen">
       <div className="flex flex-col justify-center items-center rounded-md overflow-hidden bg-black bg-opacity-50">
-        <img src={BASE_URL + backdrop_path} alt={original_title} />
+        <img src={BASE_POSTER_URL + backdrop_path} alt={original_title} />
         <h1 className="m-1 text-white text-3xl font-bold">{title}</h1>
         <p className="text-white text-xs whitespace-normal max-w-sm text-justify">
           {overview}
