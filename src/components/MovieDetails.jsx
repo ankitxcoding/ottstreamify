@@ -15,8 +15,10 @@ const MovieDetails = () => {
   const movieTrailer = useMovieTrailer(movieId);
   const backdropImage = useMovieBackdropImg(movieId);
   const [showTrailer, setShowTrailer] = useState(false);
-  console.log(backdropImage.backdrops && backdropImage.backdrops[0].file_path);
   const bgImg = backdropImage.backdrops && backdropImage.backdrops[0].file_path;
+  
+  console.log(backdropImage.backdrops && backdropImage.backdrops[0].file_path);
+
   const {
     title,
     original_title,
@@ -35,13 +37,17 @@ const MovieDetails = () => {
     setShowTrailer(!showTrailer);
   };
 
+  const backgroundStyle = {
+    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${
+      BASE_BACKDROP_URL + bgImg
+    })`,
+    backgroundSize: "cover",
+  };
+
   return (
     <div
       className="bg-[url('/assets/bg1.jpg')] bg-cover flex flex-col justify-center items-center h-screen"
-      style={{
-        backgroundImage: `url(${BASE_BACKDROP_URL + bgImg})`,
-        backgroundSize: "cover",
-      }}
+      style={backgroundStyle}
     >
       <div className="flex flex-col justify-center items-center rounded-md overflow-hidden bg-black bg-opacity-50">
         <img src={BASE_POSTER_URL + backdrop_path} alt={original_title} />
