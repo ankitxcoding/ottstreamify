@@ -3,6 +3,7 @@ import usePopularMoviesApi from "../hooks/usePopularMoviesApi";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import bgImg from "../assets/bg1.jpg";
 
 const Body = () => {
   const [page, setPage] = useState(1);
@@ -23,7 +24,14 @@ const Body = () => {
   }
 
   return (
-    <div className="bg-[url('/assets/bg1.jpg')] bg-contain flex">
+    <div
+      className="bg-[url('/assets/bg1.jpg')] bg-contain flex"
+      style={{
+        background: `url(${bgImg})`,
+        backgroundSize: "contain",
+        backgroundRepeat: "repeat",
+      }}
+    >
       <InfiniteScroll
         dataLength={popularMovies.length}
         next={handleFetchData}

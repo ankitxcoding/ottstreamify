@@ -1,4 +1,5 @@
 import useStatus from "../hooks/useStatus";
+import logo from "../assets/logo.png";
 
 const Header = () => {
   const networkStatus = useStatus();
@@ -6,7 +7,7 @@ const Header = () => {
   return (
     <div className="flex justify-between bg-gradient-to-b from-black absolute top-0 w-full">
       <div className="w-52 mx-4">
-        <img src="/assets/logo.png" alt="logo" />
+        <img src={logo} alt="logo" />
       </div>
       <div className="flex items-center mx-4">
         <ul className="flex">
