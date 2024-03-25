@@ -14,7 +14,7 @@ const PopularMoviesList = (prop) => {
   };
 
   return (
-    <div className="m-5 w-60 cursor-pointer rounded-lg relative overflow-hidden hover:scale-105 duration-300 bg-[#E50914]">
+    <div className="m-5 w-60 h-[95%] cursor-pointer rounded-lg relative overflow-hidden hover:scale-105 duration-300 bg-[#E50914]">
       <img src={BASE_POSTER_URL + poster_path} alt={original_title} />
       <button
         onClick={toggleOverview}
