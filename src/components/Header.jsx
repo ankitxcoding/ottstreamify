@@ -1,5 +1,6 @@
 import useStatus from "../hooks/useStatus";
 import logo from "../assets/logo.png";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const networkStatus = useStatus();
@@ -7,7 +8,9 @@ const Header = () => {
   return (
     <div className="flex justify-between bg-gradient-to-b from-black absolute top-0 w-full">
       <div className="w-52 mx-4">
-        <img src={logo} alt="logo" />
+        <Link to={"/"}>
+          <img src={logo} alt="logo" />
+        </Link>
       </div>
       <div className="flex items-center mx-4">
         <ul className="flex">

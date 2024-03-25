@@ -17,8 +17,8 @@ const MovieCast = (prop) => {
           className="w-full h-full object-cover rounded-full bg-zinc-800"
         />
       </div>
-      <h1 className="text-white text-xs text-center">{name}</h1>
-      <h2 className="text-white text-xs text-center">{character}</h2>
+      <h1 className="text-white text-xs font-semibold text-center">{name}</h1>
+      <h2 className="text-stone-500 text-xs text-center">{character}</h2>
     </div>
   );
 };
