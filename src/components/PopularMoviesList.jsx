@@ -3,10 +3,9 @@ import { BASE_POSTER_URL } from "../utils/constants";
 
 const PopularMoviesList = (prop) => {
   const { moviesList } = prop;
-  const { poster_path, title, original_title, vote_average, overview } =
+  const { poster_path, title, vote_average, overview } =
     moviesList;
   const [showOverview, setShowOverview] = useState(false);
-  console.log(moviesList);
 
   const toggleOverview = (e) => {
     e.preventDefault();
@@ -15,7 +14,7 @@ const PopularMoviesList = (prop) => {
 
   return (
     <div className="m-5 w-60 h-[95%] cursor-pointer rounded-lg relative overflow-hidden hover:scale-105 duration-300 bg-[#E50914]">
-      <img src={BASE_POSTER_URL + poster_path} alt={original_title} />
+      <img src={BASE_POSTER_URL + poster_path} alt={title} />
       <button
         onClick={toggleOverview}
         className="absolute top-0 right-0 px-2 py-1 bg-black text-white text-xs font-semibold rounded-md hover:text-[#E50914]"

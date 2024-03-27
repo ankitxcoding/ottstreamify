@@ -20,7 +20,6 @@ const MovieDetails = () => {
 
   const {
     title,
-    original_title,
     backdrop_path,
     genres,
     homepage,
@@ -50,7 +49,7 @@ const MovieDetails = () => {
         style={backgroundStyle}
       >
         <div className="flex flex-col justify-center items-center rounded-md overflow-hidden bg-black bg-opacity-50">
-          <img src={BASE_POSTER_URL + backdrop_path} alt={original_title} />
+          <img src={BASE_POSTER_URL + backdrop_path} alt={title} />
           <h1 className="m-1 text-white text-3xl font-bold">{title}</h1>
           <p className="text-white text-xs whitespace-normal max-w-sm text-justify">
             {overview}
