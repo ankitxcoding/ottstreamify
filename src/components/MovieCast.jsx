@@ -4,7 +4,6 @@ import shimmerImg from "../assets/shimmerImg.png";
 const MovieCast = (prop) => {
   const { castList } = prop;
   const { name, character, profile_path } = castList;
-  console.log(castList);
 
   const castImage =
     profile_path === null ? shimmerImg : BASE_POSTER_URL + profile_path;
