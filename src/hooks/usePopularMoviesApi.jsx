@@ -1,5 +1,6 @@
 import { OPTIONS } from "../utils/constants";
 import { useEffect, useState } from "react";
+import { MOVIES_BASE_API } from "../utils/constants";
 
 const usePopularMoviesApi = (page) => {
   const [popularMovies, setPopularMovies] = useState([]);
@@ -10,7 +11,7 @@ const usePopularMoviesApi = (page) => {
   const fetchPopularMovies = async (pageNumber) => {
     try {
       const data = await fetch(
-        `https://api.themoviedb.org/3/movie/popular?&page=${pageNumber}`,
+        `${MOVIES_BASE_API}popular?&page=${pageNumber}`,
         OPTIONS
       );
       if (!data.ok) {

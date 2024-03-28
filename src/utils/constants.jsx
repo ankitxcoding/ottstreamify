@@ -7,6 +7,8 @@ export const OPTIONS = {
   },
 };
 
+export const MOVIES_BASE_API = "https://api.themoviedb.org/3/movie/";
+
 export const BASE_POSTER_URL = "https://image.tmdb.org/t/p/w500";
 
 export const BASE_BACKDROP_URL = "https://image.tmdb.org/t/p/original";

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { OPTIONS } from "../utils/constants";
+import { MOVIES_BASE_API } from "../utils/constants";
 
 const useMovieTrailer = (movieId) => {
   const [movieTrailer, setMovieTrailer] = useState([]);
@@ -10,10 +11,7 @@ const useMovieTrailer = (movieId) => {
   }, []);
 
   const fetchData = async () => {
-    const data = await fetch(
-      "https://api.themoviedb.org/3/movie/" + movieId + "/videos",
-      OPTIONS
-    );
+    const data = await fetch(MOVIES_BASE_API + movieId + "/videos", OPTIONS);
     const json = await data.json();
     const trailers = json.results.filter((video) => video.type === "Trailer");
     const trailerKeys = trailers[0]?.key;

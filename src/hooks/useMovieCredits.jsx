@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { OPTIONS } from "../utils/constants";
+import { MOVIES_BASE_API } from "../utils/constants";
 
 const useMovieCredits = (movieId) => {
   const [movieCredit, setMovieCredit] = useState([]);
@@ -10,10 +11,7 @@ const useMovieCredits = (movieId) => {
   }, []);
 
   const fetchData = async () => {
-    const data = await fetch(
-      "https://api.themoviedb.org/3/movie/" + movieId + "/credits",
-      OPTIONS
-    );
+    const data = await fetch(MOVIES_BASE_API + movieId + "/credits", OPTIONS);
     const json = await data.json();
     setMovieCredit(json.cast);
   };
