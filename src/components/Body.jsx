@@ -1,57 +1,28 @@
-import PopularMoviesList from "./PopularMoviesList";
-import usePopularMoviesApi from "../hooks/usePopularMoviesApi";
-import InfiniteScroll from "react-infinite-scroll-component";
-import { useState } from "react";
 import { Link } from "react-router-dom";
-import bgImg from "../assets/bg1.jpg";
+import bgBanner from "../assets/banner.gif";
 
 const Body = () => {
-  const [page, setPage] = useState(1);
-  const { popularMovies, loading, error, hasMore, fetchPopularMovies } =
-    usePopularMoviesApi(page);
-
-  const handleFetchData = () => {
-    fetchPopularMovies(page + 1);
-    setPage(page + 1);
-  };
-
-  if (loading && popularMovies.length === 0) {
-    return <p>Loading...</p>;
-  }
-
-  if (error) {
-    return <p>{error}</p>;
-  }
-
   return (
-    <div
-      className="bg-[url('/assets/bg1.jpg')] bg-contain flex"
-      style={{
-        background: `url(${bgImg})`,
-        backgroundSize: "contain",
-        backgroundRepeat: "repeat",
-      }}
-    >
-      <InfiniteScroll
-        dataLength={popularMovies.length}
-        next={handleFetchData}
-        hasMore={hasMore}
-        loader={<h4>Loading...</h4>}
-        endMessage={
-          <p className="text-white text-center">
-            You have reached the bottom end!
-          </p>
-        }
+    <>
+      <div
+        className="flex items-center justify-center h-screen"
+        style={{
+          background: `url(${bgBanner})`,
+          backgroundSize: "cover",
+        }}
       >
-        <div className="flex flex-wrap justify-center mt-20">
-          {popularMovies.map((movie) => (
-            <Link key={movie.id} to={"movie/" + movie.id}>
-              <PopularMoviesList moviesList={movie} />
-            </Link>
-          ))}
+        <div className="flex flex-col">
+          <Link to={"/movies"}>
+            <button className="m-5 px-2 text-white bg-transparent text-8xl font-semibold border-2 border-white rounded-lg hover:bg-white hover:text-black duration-300">
+              MOVIES
+            </button>
+          </Link>
+          <button className="m-5 px-2 text-white bg-transparent text-8xl font-semibold border-2 border-white rounded-lg hover:bg-white hover:text-black duration-300">
+            SERIES
+          </button>
         </div>
-      </InfiniteScroll>
-    </div>
+      </div>
+    </>
   );
 };
 export default Body;

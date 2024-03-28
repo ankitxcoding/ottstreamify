@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import Body from "./components/Body";
 import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
 import MovieDetails from "./components/MovieDetails";
+import PopularMoviesList from "./components/PopularMoviesList";
 
 function App() {
   const Layout = () => {
@@ -24,7 +25,11 @@ function App() {
           element: <Body />,
         },
         {
-          path: "/movie/:movieId",
+          path: "/movies",
+          element: <PopularMoviesList />,
+        },
+        {
+          path: "/movies/movie/:movieId",
           element: <MovieDetails />,
         },
       ],

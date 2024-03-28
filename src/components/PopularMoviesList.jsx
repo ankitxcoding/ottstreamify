@@ -1,52 +1,56 @@
+import { Link } from "react-router-dom";
+import PopularMovieCard from "./PopularMovieCard";
+import InfiniteScroll from "react-infinite-scroll-component";
+import usePopularMoviesApi from "../hooks/usePopularMoviesApi";
 import { useState } from "react";
-import { BASE_POSTER_URL } from "../utils/constants";
+import bgImg from "../assets/bg1.jpg";
 
-const PopularMoviesList = (prop) => {
-  const { moviesList } = prop;
-  const { poster_path, title, vote_average, overview } =
-    moviesList;
-  const [showOverview, setShowOverview] = useState(false);
+const PopularMoviesList = () => {
+  const [page, setPage] = useState(1);
+  const { popularMovies, loading, error, hasMore, fetchPopularMovies } =
+    usePopularMoviesApi(page);
 
-  const toggleOverview = (e) => {
-    e.preventDefault();
-    setShowOverview(!showOverview);
+  const handleFetchData = () => {
+    fetchPopularMovies(page + 1);
+    setPage(page + 1);
   };
 
+  if (loading && popularMovies.length === 0) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>{error}</p>;
+  }
+
   return (
-    <div className="m-5 w-60 h-[95%] cursor-pointer rounded-lg relative overflow-hidden hover:scale-105 duration-300 bg-[#E50914]">
-      <img src={BASE_POSTER_URL + poster_path} alt={title} />
-      <button
-        onClick={toggleOverview}
-        className="absolute top-0 right-0 px-2 py-1 bg-black text-white text-xs font-semibold rounded-md hover:text-[#E50914]"
+    <div
+      className="bg-[url('/assets/bg1.jpg')] bg-contain flex"
+      style={{
+        background: `url(${bgImg})`,
+        backgroundSize: "contain",
+        backgroundRepeat: "repeat",
+      }}
+    >
+      <InfiniteScroll
+        dataLength={popularMovies.length}
+        next={handleFetchData}
+        hasMore={hasMore}
+        loader={<h4>Loading...</h4>}
+        endMessage={
+          <p className="text-white text-center">
+            You have reached the bottom end!
+          </p>
+        }
       >
-        {showOverview ? "Hide Overview" : "Overview"}
-      </button>
-      {showOverview && (
-        <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-90 text-white p-2">
-          <h1 className="text-white text-xl font-bold">{title}</h1>
-          <p className="text-sm">{overview}</p>
+        <div className="flex flex-wrap justify-center mt-20">
+          {popularMovies.map((movie) => (
+            <Link key={movie.id} to={"/movies/movie/" + movie.id}>
+              <PopularMovieCard moviesList={movie} />
+            </Link>
+          ))}
         </div>
-      )}
-      <h1 className="mx-4 my-2 p-1 text-white text-xl font-bold">{title}</h1>
-      <div className="mx-4 my-2 flex items-center w-fit bg-black rounded-md">
-        <i className="fa-solid fa-star text-yellow-500 mx-1"></i>
-        <h2
-          className={`font-semibold ${
-            vote_average >= 7
-              ? "text-green-500"
-              : vote_average >= 6
-              ? "text-yellow-500"
-              : "text-red-500"
-          }`}
-        >
-          {vote_average === 0 ? (
-            <span className="text-white">NR</span>
-          ) : (
-            Math.round(vote_average * 10) / 10
-          )}
-        </h2>
-        <h3 className="text-gray-400 text-xs mr-1">/10</h3>
-      </div>
+      </InfiniteScroll>
     </div>
   );
 };
