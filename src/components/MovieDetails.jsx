@@ -16,7 +16,7 @@ const MovieDetails = () => {
   const movieTrailer = useMovieTrailer(movieId);
   const backdropImage = useMovieBackdropImg(movieId);
   const [showTrailer, setShowTrailer] = useState(false);
-  const bgImg = backdropImage.backdrops && backdropImage.backdrops[0].file_path;
+  const bgImg = backdropImage?.backdrops && backdropImage?.backdrops[0]?.file_path;
 
   const {
     title,
@@ -25,11 +25,15 @@ const MovieDetails = () => {
     homepage,
     imdb_id,
     vote_average,
+    tagline,
+    runtime,
+    release_date,
     overview,
+    status,
   } = movieDetails;
 
   const formattedGenres =
-    genres && genres.map((genre) => genre.name).join(", ");
+    genres && genres.map((genre) => genre?.name).join(", ");
 
   const toggleVideo = () => {
     setShowTrailer(!showTrailer);
@@ -51,12 +55,19 @@ const MovieDetails = () => {
         <div className="mt-24 flex flex-col justify-center items-center rounded-md overflow-hidden bg-black bg-opacity-50">
           <img src={BASE_POSTER_URL + backdrop_path} alt={title} />
           <h1 className="m-1 text-white text-3xl font-bold">{title}</h1>
-          <p className="text-white text-xs whitespace-normal max-w-sm text-justify">
+          <h2 className="m-1 text-white text-sm font-semibold">
+            ({tagline === "" ? "NA" : tagline})
+          </h2>
+          <h2 className="m-1 text-white text-xs">
+            Release Date - {release_date} · Duration - {runtime} Minutes
+          </h2>
+          <p className="m-1 text-white text-xs whitespace-normal max-w-sm text-justify">
             {overview}
           </p>
           <h2 className="m-1 text-white text-sm font-semibold">
             {formattedGenres}
           </h2>
+          <p className="m-1 text-white text-xs">Release Status - ({status})</p>
           <div className="flex mb-2">
             <a
               href={IMDB_URL + imdb_id}

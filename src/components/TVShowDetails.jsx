@@ -16,7 +16,7 @@ const TVShowDetails = () => {
   const tvShowTrailer = useTVShowTrailer(tvShowId);
   const backdropImage = useTVShowBackdropImg(tvShowId);
   const [showTrailer, setShowTrailer] = useState(false);
-  const bgImg = backdropImage.backdrops && backdropImage.backdrops[0].file_path;
+  const bgImg = backdropImage?.backdrops && backdropImage.backdrops[0]?.file_path;
 
   const {
     name,
@@ -25,11 +25,17 @@ const TVShowDetails = () => {
     homepage,
     imdb_id,
     vote_average,
+    tagline,
+    number_of_seasons,
+    number_of_episodes,
+    first_air_date,
+    last_air_date,
     overview,
+    status,
   } = tvShowDetails;
 
   const formattedGenres =
-    genres && genres.map((genre) => genre.name).join(", ");
+    genres && genres.map((genre) => genre?.name).join(", ");
 
   const toggleVideo = () => {
     setShowTrailer(!showTrailer);
@@ -51,12 +57,23 @@ const TVShowDetails = () => {
         <div className="mt-24 flex flex-col justify-center items-center rounded-md overflow-hidden bg-black bg-opacity-50">
           <img src={BASE_POSTER_URL + backdrop_path} alt={name} />
           <h1 className="m-1 text-white text-3xl font-bold">{name}</h1>
-          <p className="text-white text-xs whitespace-normal max-w-sm text-justify">
+          <h2 className="m-1 text-white text-sm font-semibold">
+            ({tagline === "" ? "NA" : tagline})
+          </h2>
+          <h2 className="m-1 text-white text-xs">
+            Number Of Seasons - {number_of_seasons} · Number Of Episodes -{" "}
+            {number_of_episodes}
+          </h2>
+          <h2 className="m-1 text-white text-xs">
+            First Air - {first_air_date} · Last Air - {last_air_date}
+          </h2>
+          <p className="m-1 text-white text-xs whitespace-normal max-w-sm text-justify">
             {overview}
           </p>
           <h2 className="m-1 text-white text-sm font-semibold">
             {formattedGenres}
           </h2>
+          <p className="m-1 text-white text-xs">Status - ({status})</p>
           <div className="flex mb-2">
             <a
               href={IMDB_URL + imdb_id}
