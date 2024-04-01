@@ -45,10 +45,10 @@ const MovieDetails = () => {
   return (
     <>
       <div
-        className="flex flex-col justify-center items-center h-screen"
+        className="flex flex-col justify-center items-center min-h-screen"
         style={backgroundStyle}
       >
-        <div className="flex flex-col justify-center items-center rounded-md overflow-hidden bg-black bg-opacity-50">
+        <div className="mt-24 flex flex-col justify-center items-center rounded-md overflow-hidden bg-black bg-opacity-50">
           <img src={BASE_POSTER_URL + backdrop_path} alt={title} />
           <h1 className="m-1 text-white text-3xl font-bold">{title}</h1>
           <p className="text-white text-xs whitespace-normal max-w-sm text-justify">
@@ -96,7 +96,7 @@ const MovieDetails = () => {
             </a>
           </div>
         </div>
-        <div className="no-scrollbar mt-5 py-2 overflow-x-scroll w-1/2 bg-black bg-opacity-50 rounded-md">
+        <div className="no-scrollbar my-5 py-2 overflow-x-scroll w-1/2 bg-black bg-opacity-50 rounded-md">
           <MovieCastList />
         </div>
         {showTrailer && (
