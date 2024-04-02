@@ -16,7 +16,7 @@ const PopularTVShowsList = () => {
   };
 
   if (loading && popularTVShows.length === 0) {
-    return <p>Loading...</p>;
+    return <p className="text-white text-center">Loading...</p>;
   }
 
   if (error) {
@@ -36,7 +36,7 @@ const PopularTVShowsList = () => {
         dataLength={popularTVShows.length}
         next={handleFetchData}
         hasMore={hasMore}
-        loader={<h4>Loading...</h4>}
+        loader={<h4 className="text-white text-center">Loading...</h4>}
         endMessage={
           <p className="text-white text-center">
             You have reached the bottom end!

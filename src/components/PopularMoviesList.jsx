@@ -36,7 +36,7 @@ const PopularMoviesList = () => {
         dataLength={popularMovies.length}
         next={handleFetchData}
         hasMore={hasMore}
-        loader={<h4>Loading...</h4>}
+        loader={<h4 className="text-white text-center">Loading...</h4>}
         endMessage={
           <p className="text-white text-center">
             You have reached the bottom end!
