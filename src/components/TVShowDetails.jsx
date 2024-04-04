@@ -16,7 +16,8 @@ const TVShowDetails = () => {
   const tvShowTrailer = useTVShowTrailer(tvShowId);
   const backdropImage = useTVShowBackdropImg(tvShowId);
   const [showTrailer, setShowTrailer] = useState(false);
-  const bgImg = backdropImage?.backdrops && backdropImage.backdrops[0]?.file_path;
+  const bgImg =
+    backdropImage?.backdrops && backdropImage.backdrops[0]?.file_path;
 
   const {
     name,
@@ -57,30 +58,30 @@ const TVShowDetails = () => {
         <div className="mt-24 flex flex-col justify-center items-center rounded-md overflow-hidden bg-black bg-opacity-50">
           <img src={BASE_POSTER_URL + backdrop_path} alt={name} />
           <h1 className="m-1 text-white text-3xl font-bold">{name}</h1>
-          <h2 className="m-1 text-white text-sm font-semibold">
+          <h2 className="m-1 text-stone-400 text-sm font-semibold">
             ({tagline === "" ? "NA" : tagline})
-          </h2>
-          <h2 className="m-1 text-white text-xs">
-            Number Of Seasons - {number_of_seasons} · Number Of Episodes -{" "}
-            {number_of_episodes}
-          </h2>
-          <h2 className="m-1 text-white text-xs">
-            First Air - {first_air_date} · Last Air - {last_air_date}
           </h2>
           <p className="m-1 text-white text-xs whitespace-normal max-w-sm text-justify">
             {overview}
           </p>
+          <h2 className="m-1 text-stone-400 text-xs">
+            Number Of Seasons - {number_of_seasons} · Number Of Episodes -{" "}
+            {number_of_episodes}
+          </h2>
+          <h2 className="mx-1 text-stone-400 text-xs">
+            First Air - {first_air_date} · Last Air - {last_air_date}
+          </h2>
+          <p className="m-1 text-stone-400 text-xs">Status - ({status})</p>
           <h2 className="m-1 text-white text-sm font-semibold">
             {formattedGenres}
           </h2>
-          <p className="m-1 text-white text-xs">Status - ({status})</p>
           <div className="flex mb-2">
             <a
               href={IMDB_URL + imdb_id}
               target="_blank"
               rel="noopener noreferrer"
             >
-              <div className="m-1 px-2 py-1 border border-white flex items-center w-fit bg-black rounded-md">
+              <div className="m-1 px-2 py-1 border border-white flex items-center w-fit bg-black hover:bg-zinc-900 rounded-md">
                 <i className="fa-solid fa-star text-yellow-500 mx-1"></i>
                 <h2
                   className={`font-semibold ${
@@ -102,12 +103,12 @@ const TVShowDetails = () => {
             </a>
             <button
               onClick={toggleVideo}
-              className="m-1 px-2 py-1 text-white font-semibold bg-blue-500 rounded-md"
+              className="m-1 px-2 py-1 text-white font-semibold bg-[#E50914] hover:bg-[#e50914c0] rounded-md"
             >
               {showTrailer ? "Hide Trailer" : "Watch Trailer"}
             </button>
             <a href={homepage} target="_blank" rel="noopener noreferrer">
-              <button className="m-1 px-2 py-1 text-black font-semibold bg-white rounded-md">
+              <button className="m-1 px-2 py-1 text-black font-semibold bg-white hover:bg-zinc-400 rounded-md">
                 Watch Series
               </button>
             </a>

@@ -16,7 +16,7 @@ const PopularMoviesList = () => {
   };
 
   if (loading && popularMovies.length === 0) {
-    return <p>Loading...</p>;
+    return <p className="text-white text-center">Loading...</p>;
   }
 
   if (error) {

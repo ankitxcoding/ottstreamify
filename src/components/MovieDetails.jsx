@@ -16,7 +16,8 @@ const MovieDetails = () => {
   const movieTrailer = useMovieTrailer(movieId);
   const backdropImage = useMovieBackdropImg(movieId);
   const [showTrailer, setShowTrailer] = useState(false);
-  const bgImg = backdropImage?.backdrops && backdropImage?.backdrops[0]?.file_path;
+  const bgImg =
+    backdropImage?.backdrops && backdropImage?.backdrops[0]?.file_path;
 
   const {
     title,
@@ -55,26 +56,28 @@ const MovieDetails = () => {
         <div className="mt-24 flex flex-col justify-center items-center rounded-md overflow-hidden bg-black bg-opacity-50">
           <img src={BASE_POSTER_URL + backdrop_path} alt={title} />
           <h1 className="m-1 text-white text-3xl font-bold">{title}</h1>
-          <h2 className="m-1 text-white text-sm font-semibold">
+          <h2 className="m-1 text-stone-400 text-sm font-semibold">
             ({tagline === "" ? "NA" : tagline})
-          </h2>
-          <h2 className="m-1 text-white text-xs">
-            Release Date - {release_date} · Duration - {runtime} Minutes
           </h2>
           <p className="m-1 text-white text-xs whitespace-normal max-w-sm text-justify">
             {overview}
           </p>
+          <h2 className="m-1 text-stone-400 text-xs">
+            Release Date - {release_date} · Duration - {runtime} Minutes
+          </h2>
+          <p className="m-1 text-stone-400 text-xs">
+            Release Status - ({status})
+          </p>
           <h2 className="m-1 text-white text-sm font-semibold">
             {formattedGenres}
           </h2>
-          <p className="m-1 text-white text-xs">Release Status - ({status})</p>
           <div className="flex mb-2">
             <a
               href={IMDB_URL + imdb_id}
               target="_blank"
               rel="noopener noreferrer"
             >
-              <div className="m-1 px-2 py-1 border border-white flex items-center w-fit bg-black rounded-md">
+              <div className="m-1 px-2 py-1 border border-white flex items-center w-fit bg-black hover:bg-zinc-900 rounded-md">
                 <i className="fa-solid fa-star text-yellow-500 mx-1"></i>
                 <h2
                   className={`font-semibold ${
@@ -96,12 +99,12 @@ const MovieDetails = () => {
             </a>
             <button
               onClick={toggleVideo}
-              className="m-1 px-2 py-1 text-white font-semibold bg-blue-500 rounded-md"
+              className="m-1 px-2 py-1 text-white font-semibold bg-[#E50914] hover:bg-[#e50914c0] rounded-md"
             >
               {showTrailer ? "Hide Trailer" : "Watch Trailer"}
             </button>
             <a href={homepage} target="_blank" rel="noopener noreferrer">
-              <button className="m-1 px-2 py-1 text-black font-semibold bg-white rounded-md">
+              <button className="m-1 px-2 py-1 text-black font-semibold bg-white hover:bg-zinc-400 rounded-md">
                 Watch Movie
               </button>
             </a>
@@ -110,7 +113,7 @@ const MovieDetails = () => {
         <div className="no-scrollbar my-5 py-2 overflow-x-scroll w-1/2 bg-black bg-opacity-50 rounded-md">
           <MovieCastList />
         </div>
-        {showTrailer && (
+        {showTrailer && movieTrailer ? (
           <div className="video-container absolute">
             <iframe
               width="1080"
@@ -129,6 +132,18 @@ const MovieDetails = () => {
               <i className="fa-solid fa-xmark text-2xl"></i>
             </button>
           </div>
+        ) : (
+          showTrailer && (
+            <div className="w-2/3 h-5/6 flex justify-center items-center bg-black absolute">
+              <p className="text-white text-7xl">Trailer Not Found!</p>
+              <button
+                onClick={toggleVideo}
+                className="px-[7px] text-white bg-black hover:bg-[#E50914] rounded-full absolute -top-5 -right-4"
+              >
+                <i className="fa-solid fa-xmark text-2xl"></i>
+              </button>
+            </div>
+          )
         )}
       </div>
     </>
