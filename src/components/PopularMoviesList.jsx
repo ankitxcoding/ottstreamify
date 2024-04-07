@@ -4,15 +4,35 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import usePopularMoviesApi from "../hooks/usePopularMoviesApi";
 import { useState } from "react";
 import bgImg from "../assets/bg1.jpg";
+import useMovieSearch from "../hooks/useMovieSearch";
 
 const PopularMoviesList = () => {
   const [page, setPage] = useState(1);
   const { popularMovies, loading, error, hasMore, fetchPopularMovies } =
     usePopularMoviesApi(page);
+  const [searchQuery, setSearchQuery] = useState("");
+  const {
+    searchResults,
+    loading: searchLoading,
+    error: searchError,
+    fetchNextPage,
+    hasMore: hasMoreSearchResults,
+    resetSearch,
+  } = useMovieSearch(searchQuery);
 
   const handleFetchData = () => {
-    fetchPopularMovies(page + 1);
-    setPage(page + 1);
+    if (searchQuery.trim()) {
+      fetchNextPage();
+    } else {
+      fetchPopularMovies(page + 1);
+      setPage(page + 1);
+    }
+  };
+
+  const handleSearch = () => {
+    if (!searchQuery.trim()) {
+      resetSearch();
+    }
   };
 
   if (loading && popularMovies.length === 0) {
@@ -25,17 +45,41 @@ const PopularMoviesList = () => {
 
   return (
     <div
-      className="bg-[url('/assets/bg1.jpg')] bg-contain flex"
+      className="bg-contain flex justify-center items-center"
       style={{
-        background: `url(${bgImg})`,
-        backgroundSize: "contain",
-        backgroundRepeat: "repeat",
+        backgroundImage: `url(${bgImg})`,
+        minHeight: "100vh",
+        backgroundSize: "auto",
       }}
     >
+      <div
+        className="absolute top-10 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/2"
+        style={{ maxWidth: "50%" }}
+      >
+        <div className="flex justify-center">
+          <input
+            type="text"
+            placeholder="Search Any Movies Here..."
+            className="m-1 px-4 py-1 text-white bg-black border-2 border-white rounded-md w-full"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+          <button
+            className="m-1 px-4 py-1 text-white bg-black hover:bg-zinc-800 border-2 border-white rounded-md"
+            onClick={handleSearch}
+          >
+            Search
+          </button>
+        </div>
+      </div>
+      {searchLoading && <p>Loading search results...</p>}
+      {searchError && <p>{searchError}</p>}
       <InfiniteScroll
-        dataLength={popularMovies.length}
+        dataLength={
+          searchQuery.trim() ? searchResults.length : popularMovies.length
+        }
         next={handleFetchData}
-        hasMore={hasMore}
+        hasMore={searchQuery.trim() ? hasMoreSearchResults : hasMore}
         loader={<h4 className="text-white text-center">Loading...</h4>}
         endMessage={
           <p className="text-white text-center">
@@ -44,11 +88,17 @@ const PopularMoviesList = () => {
         }
       >
         <div className="flex flex-wrap justify-center mt-20">
-          {popularMovies.map((movie) => (
-            <Link key={movie.id} to={"/movies/movie/" + movie.id}>
+          {searchResults.map((movie) => (
+            <Link key={movie.id} to={`/movies/movie/${movie.id}`}>
               <PopularMovieCard moviesList={movie} />
             </Link>
           ))}
+          {!searchQuery.trim() &&
+            popularMovies.map((movie) => (
+              <Link key={movie.id} to={`/movies/movie/${movie.id}`}>
+                <PopularMovieCard moviesList={movie} />
+              </Link>
+            ))}
         </div>
       </InfiniteScroll>
     </div>
