@@ -53,19 +53,19 @@ const PopularMoviesList = () => {
       }}
     >
       <div
-        className="absolute top-10 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/2"
+        className="absolute top-28 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/2"
         style={{ maxWidth: "50%" }}
       >
         <div className="flex justify-center">
           <input
             type="text"
             placeholder="Search Any Movies Here..."
-            className="m-1 px-4 py-1 text-white bg-black border-2 border-white rounded-md w-full"
+            className="m-1 px-4 py-2 text-white bg-black border-2 border-white rounded-md w-full"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
           <button
-            className="m-1 px-4 py-1 text-white bg-black hover:bg-zinc-800 border-2 border-white rounded-md"
+            className="m-1 px-4 py-2 text-white bg-black hover:bg-zinc-800 border-2 border-white rounded-md"
             onClick={handleSearch}
           >
             Search
@@ -87,7 +87,7 @@ const PopularMoviesList = () => {
           </p>
         }
       >
-        <div className="flex flex-wrap justify-center mt-20">
+        <div className="flex flex-wrap justify-center mt-40">
           {searchResults.map((movie) => (
             <Link key={movie.id} to={`/movies/movie/${movie.id}`}>
               <PopularMovieCard moviesList={movie} />
