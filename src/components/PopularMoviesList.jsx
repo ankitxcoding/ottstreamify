@@ -45,27 +45,29 @@ const PopularMoviesList = () => {
 
   return (
     <div
-      className="bg-contain flex justify-center items-center"
+      className="bg-contain flex justify-center items-center min-h-screen pt-16 sm:pt-16"
       style={{
         backgroundImage: `url(${bgImg})`,
-        minHeight: "100vh",
         backgroundSize: "auto",
       }}
     >
       <div
-        className="absolute top-28 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/2"
-        style={{ maxWidth: "50%" }}
+        className="absolute top-36 sm:top-32 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] sm:w-1/2"
+        style={{
+          maxWidth: "90%",
+          "@media (min-width: 640px)": { maxWidth: "50%" },
+        }}
       >
-        <div className="flex justify-center">
+        <div className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-0">
           <input
             type="text"
             placeholder="Search Any Movies Here..."
-            className="m-1 px-4 py-2 text-white bg-black border-2 border-white rounded-md w-full"
+            className="px-3 sm:px-4 py-2 text-white bg-black border-2 border-white rounded-md w-full text-sm sm:text-base"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
           <button
-            className="m-1 px-4 py-2 text-white bg-black hover:bg-zinc-800 border-2 border-white rounded-md"
+            className="px-3 sm:px-4 py-2 text-white bg-black hover:bg-zinc-800 border-2 border-white rounded-md text-sm sm:text-base"
             onClick={handleSearch}
           >
             Search
@@ -87,18 +89,28 @@ const PopularMoviesList = () => {
           </p>
         }
       >
-        <div className="flex flex-wrap justify-center mt-40">
-          {searchResults.map((movie) => (
-            <Link key={movie.id} to={`/movies/movie/${movie.id}`}>
-              <PopularMovieCard moviesList={movie} />
-            </Link>
-          ))}
-          {!searchQuery.trim() &&
-            popularMovies.map((movie) => (
-              <Link key={movie.id} to={`/movies/movie/${movie.id}`}>
+        <div className="w-full max-w-[1400px] mx-auto mt-40 px-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+            {searchResults.map((movie) => (
+              <Link
+                key={movie.id}
+                to={`/movies/movie/${movie.id}`}
+                className="w-full aspect-[2/3]"
+              >
                 <PopularMovieCard moviesList={movie} />
               </Link>
             ))}
+            {!searchQuery.trim() &&
+              popularMovies.map((movie) => (
+                <Link
+                  key={movie.id}
+                  to={`/movies/movie/${movie.id}`}
+                  className="w-full aspect-[2/3]"
+                >
+                  <PopularMovieCard moviesList={movie} />
+                </Link>
+              ))}
+          </div>
         </div>
       </InfiniteScroll>
     </div>
