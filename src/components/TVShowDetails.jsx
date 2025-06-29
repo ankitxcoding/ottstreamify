@@ -9,10 +9,13 @@ import useTVShowTrailer from "../hooks/useTVShowTrailer";
 import { useState } from "react";
 import useTVShowBackdropImg from "../hooks/useTVShowBackdropImg";
 import TVShowsCastList from "./TVShowCastList";
+import OttTVShowPlayer from "./OttTVShowPlayer";
+import useTVShowExternalDetails from "../hooks/useTVShowExternalDetails";
 
 const TVShowDetails = () => {
   const { tvShowId } = useParams();
   const tvShowDetails = useTVShowDetails(tvShowId);
+  const tvShowExternalDetails = useTVShowExternalDetails(tvShowId);
   const tvShowTrailer = useTVShowTrailer(tvShowId);
   const backdropImage = useTVShowBackdropImg(tvShowId);
   const [showTrailer, setShowTrailer] = useState(false);
@@ -23,8 +26,6 @@ const TVShowDetails = () => {
     name,
     backdrop_path,
     genres,
-    homepage,
-    imdb_id,
     vote_average,
     tagline,
     number_of_seasons,
@@ -34,6 +35,8 @@ const TVShowDetails = () => {
     overview,
     status,
   } = tvShowDetails;
+
+  const { id, imdb_id } = tvShowExternalDetails;
 
   const formattedGenres =
     genres && genres.map((genre) => genre?.name).join(", ");
@@ -55,36 +58,44 @@ const TVShowDetails = () => {
         className="flex flex-col justify-center items-center min-h-screen"
         style={backgroundStyle}
       >
-        <div className="mt-24 flex flex-col justify-center items-center rounded-md overflow-hidden bg-black bg-opacity-50">
-          <img src={BASE_POSTER_URL + backdrop_path} alt={name} />
-          <h1 className="m-1 text-white text-3xl font-bold">{name}</h1>
-          <h2 className="m-1 text-stone-400 text-sm font-semibold">
+        <div className="mt-16 sm:mt-24 flex flex-col justify-center items-center rounded-md overflow-hidden bg-black bg-opacity-50 w-full sm:w-auto px-4 sm:px-0">
+          <img
+            src={BASE_POSTER_URL + backdrop_path}
+            alt={name}
+            className="w-full sm:w-auto"
+          />
+          <h1 className="m-1 text-white text-xl sm:text-3xl font-bold">
+            {name}
+          </h1>
+          <h2 className="m-1 text-stone-400 text-xs sm:text-sm font-semibold">
             ({tagline === "" ? "NA" : tagline})
           </h2>
-          <p className="m-1 text-white text-xs whitespace-normal max-w-sm text-justify">
+          <p className="m-1 text-white text-xs whitespace-normal max-w-[90%] sm:max-w-sm text-justify">
             {overview}
           </p>
-          <h2 className="m-1 text-stone-400 text-xs">
+          <h2 className="m-1 text-stone-400 text-[10px] sm:text-xs">
             Number Of Seasons - {number_of_seasons} · Number Of Episodes -{" "}
             {number_of_episodes}
           </h2>
-          <h2 className="mx-1 text-stone-400 text-xs">
+          <h2 className="mx-1 text-stone-400 text-[10px] sm:text-xs">
             First Air - {first_air_date} · Last Air - {last_air_date}
           </h2>
-          <p className="m-1 text-stone-400 text-xs">Status - ({status})</p>
-          <h2 className="m-1 text-white text-sm font-semibold">
+          <p className="m-1 text-stone-400 text-[10px] sm:text-xs">
+            Status - ({status})
+          </p>
+          <h2 className="m-1 text-white text-xs sm:text-sm font-semibold">
             {formattedGenres}
           </h2>
-          <div className="flex mb-2">
+          <div className="flex flex-wrap sm:flex-nowrap justify-center gap-2 mb-2">
             <a
               href={IMDB_URL + imdb_id}
               target="_blank"
               rel="noopener noreferrer"
             >
-              <div className="m-1 px-2 py-1 border border-white flex items-center w-fit bg-black hover:bg-zinc-900 rounded-md">
-                <i className="fa-solid fa-star text-yellow-500 mx-1"></i>
+              <div className="h-9 m-1 px-4 py-1.5 border border-white flex items-center justify-center bg-black hover:bg-zinc-900 rounded-md">
+                <i className="fa-solid fa-star text-yellow-500 text-base"></i>
                 <h2
-                  className={`font-semibold ${
+                  className={`text-base font-semibold ${
                     vote_average >= 7
                       ? "text-green-500"
                       : vote_average >= 6
@@ -98,33 +109,29 @@ const TVShowDetails = () => {
                     vote_average && vote_average.toFixed(1)
                   )}
                 </h2>
-                <h3 className="text-gray-400 text-xs mr-1">/10</h3>
+                <h3 className="text-gray-400 text-xs">/10</h3>
               </div>
             </a>
             <button
               onClick={toggleVideo}
-              className="m-1 px-2 py-1 text-white font-semibold bg-[#E50914] hover:bg-[#e50914c0] rounded-md"
+              className="h-9 m-1 px-4 py-1.5 text-white text-base font-semibold bg-[#E50914] hover:bg-[#e50914c0] rounded-md"
             >
               {showTrailer ? "Hide Trailer" : "Watch Trailer"}
             </button>
-            <a href={homepage} target="_blank" rel="noopener noreferrer">
-              <button className="m-1 px-2 py-1 text-black font-semibold bg-white hover:bg-zinc-400 rounded-md">
-                Watch Series
-              </button>
-            </a>
+            <OttTVShowPlayer tmdb_id={id} />
           </div>
         </div>
-        <div className="no-scrollbar my-5 py-2 overflow-x-scroll w-1/2 bg-black bg-opacity-50 rounded-md">
+        <div className="no-scrollbar my-5 py-2 overflow-x-scroll w-[90%] sm:w-1/2 bg-black bg-opacity-50 rounded-md">
           <TVShowsCastList />
         </div>
         {showTrailer && tvShowTrailer ? (
-          <div className="video-container absolute">
+          <div className="video-container absolute w-full sm:w-auto">
             <iframe
-              width="1080"
-              height="608"
+              width="100%"
+              height="300"
+              className="sm:w-[1080px] sm:h-[608px]"
               src={`https://www.youtube.com/embed/${tvShowTrailer}?autoplay=1&mute=1`}
-              name="YouTube video player"
-              frameBorder="0"
+              title="YouTube video player"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerPolicy="strict-origin-when-cross-origin"
               allowFullScreen
@@ -133,18 +140,20 @@ const TVShowDetails = () => {
               onClick={toggleVideo}
               className="px-[7px] text-white bg-black hover:bg-[#E50914] rounded-full absolute -top-5 -right-4"
             >
-              <i className="fa-solid fa-xmark text-2xl"></i>
+              <i className="fa-solid fa-xmark text-xl sm:text-2xl"></i>
             </button>
           </div>
         ) : (
           showTrailer && (
-            <div className="w-2/3 h-5/6 flex justify-center items-center bg-black absolute">
-              <p className="text-white text-7xl">Trailer Not Found!</p>
+            <div className="w-[90%] sm:w-2/3 h-5/6 flex justify-center items-center bg-black absolute">
+              <p className="text-white text-3xl sm:text-7xl text-center">
+                Trailer Not Found!
+              </p>
               <button
                 onClick={toggleVideo}
                 className="px-[7px] text-white bg-black hover:bg-[#E50914] rounded-full absolute -top-5 -right-4"
               >
-                <i className="fa-solid fa-xmark text-2xl"></i>
+                <i className="fa-solid fa-xmark text-xl sm:text-2xl"></i>
               </button>
             </div>
           )
@@ -153,4 +162,5 @@ const TVShowDetails = () => {
     </>
   );
 };
+
 export default TVShowDetails;
