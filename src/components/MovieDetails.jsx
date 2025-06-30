@@ -54,7 +54,7 @@ const MovieDetails = () => {
         className="flex flex-col justify-center items-center min-h-screen"
         style={backgroundStyle}
       >
-        <div className="mt-16 sm:mt-24 flex flex-col justify-center items-center rounded-md overflow-hidden bg-black bg-opacity-50 w-full sm:w-auto px-4 sm:px-0">
+        <div className="mt-28 sm:mt-24 flex flex-col justify-center items-center rounded-md overflow-hidden bg-black bg-opacity-50 w-full sm:w-auto px-4 sm:px-0">
           <img
             src={BASE_POSTER_URL + backdrop_path}
             alt={title}
