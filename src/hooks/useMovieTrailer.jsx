@@ -19,4 +19,5 @@ const useMovieTrailer = (movieId) => {
   };
   return movieTrailer;
 };
+
 export default useMovieTrailer;

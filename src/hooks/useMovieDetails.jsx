@@ -20,4 +20,5 @@ const useMovieDetails = (movieId) => {
   };
   return movieDetails;
 };
+
 export default useMovieDetails;

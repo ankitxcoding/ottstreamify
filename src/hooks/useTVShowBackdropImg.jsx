@@ -16,4 +16,5 @@ const useTVShowBackdropImg = (tvShows) => {
   };
   return backdropImage;
 };
+
 export default useTVShowBackdropImg;

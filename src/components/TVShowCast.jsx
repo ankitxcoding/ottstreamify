@@ -21,4 +21,5 @@ const TVShowCast = (prop) => {
     </div>
   );
 };
+
 export default TVShowCast;

@@ -18,4 +18,5 @@ const useTVShowTrailer = (tvShowId) => {
   };
   return tvShowTrailer;
 };
+
 export default useTVShowTrailer;

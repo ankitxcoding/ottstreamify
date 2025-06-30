@@ -14,4 +14,5 @@ const MovieCastList = () => {
     </div>
   );
 };
+
 export default MovieCastList;

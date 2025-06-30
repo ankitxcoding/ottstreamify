@@ -17,4 +17,5 @@ const useMovieBackdropImg = (movieId) => {
   };
   return backdropImage;
 };
+
 export default useMovieBackdropImg;

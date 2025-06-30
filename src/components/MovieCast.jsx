@@ -21,4 +21,5 @@ const MovieCast = (prop) => {
     </div>
   );
 };
+
 export default MovieCast;

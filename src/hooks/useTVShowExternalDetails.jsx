@@ -23,4 +23,5 @@ const useTVShowExternalDetails = (tvShowId) => {
   };
   return tvShowExternalDetails;
 };
+
 export default useTVShowExternalDetails;

@@ -14,4 +14,5 @@ const TVShowCastList = () => {
     </div>
   );
 };
+
 export default TVShowCastList;

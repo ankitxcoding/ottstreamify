@@ -36,4 +36,5 @@ const usePopularTVShowsApi = (page) => {
 
   return { popularTVShows, loading, error, hasMore, fetchPopularTVShows };
 };
+
 export default usePopularTVShowsApi;

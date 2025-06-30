@@ -37,4 +37,5 @@ const usePopularMoviesApi = (page) => {
 
   return { popularMovies, loading, error, hasMore, fetchPopularMovies };
 };
+
 export default usePopularMoviesApi;

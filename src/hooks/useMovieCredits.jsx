@@ -17,4 +17,5 @@ const useMovieCredits = (movieId) => {
   };
   return movieCredit;
 };
+
 export default useMovieCredits;
