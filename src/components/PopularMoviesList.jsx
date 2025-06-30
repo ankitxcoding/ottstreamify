@@ -116,4 +116,5 @@ const PopularMoviesList = () => {
     </div>
   );
 };
+
 export default PopularMoviesList;

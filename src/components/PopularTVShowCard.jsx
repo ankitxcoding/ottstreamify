@@ -12,7 +12,7 @@ const PopularTVShowCard = (prop) => {
   };
 
   return (
-    <div className="w-full h-[500px] cursor-pointer rounded-lg relative overflow-hidden hover:scale-105 duration-300 bg-[#E50914]">
+    <div className="w-full cursor-pointer rounded-lg relative overflow-hidden hover:scale-105 duration-300 bg-[#E50914] h-[500px]">
       <div className="h-[400px] overflow-hidden">
         <img
           src={BASE_POSTER_URL + poster_path}
@@ -28,12 +28,12 @@ const PopularTVShowCard = (prop) => {
       </button>
       {showOverview && (
         <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-90 text-white p-2">
-          <h1 className="text-white text-xl font-bold truncate">{name}</h1>
-          <p className="text-sm line-clamp-3">{overview}</p>
+          <h1 className="text-white text-xl font-bold">{name}</h1>
+          <p className="text-sm">{overview}</p>
         </div>
       )}
-      <div className="h-[100px] px-4 py-2">
-        <h1 className="text-white text-xl font-bold truncate">{name}</h1>
+      <div className="px-4 py-2 h-[100px]">
+        <h1 className="text-white text-xl font-bold line-clamp-2">{name}</h1>
         <div className="mt-2 flex items-center w-fit bg-black rounded-md">
           <i className="fa-solid fa-star text-yellow-500 mx-1"></i>
           <h2
