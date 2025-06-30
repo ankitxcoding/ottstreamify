@@ -33,7 +33,7 @@ const Header = () => {
               </Link>
               <Link to={"tvShows"}>
                 <li className="m-2 sm:m-4 text-white text-lg sm:text-xl font-bold hover:cursor-pointer relative w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center">
-                  Series
+                  TV Shows
                 </li>
               </Link>
             </>
@@ -41,7 +41,7 @@ const Header = () => {
           {isMoviesPage && (
             <Link to={"tvShows"}>
               <li className="m-2 sm:m-4 text-white text-lg sm:text-xl font-bold hover:cursor-pointer relative w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center">
-                Series
+                TV Shows
               </li>
             </Link>
           )}
