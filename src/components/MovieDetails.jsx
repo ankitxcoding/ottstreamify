@@ -117,23 +117,37 @@ const MovieDetails = () => {
           <MovieCastList />
         </div>
         {showTrailer && movieTrailer ? (
-          <div className="video-container absolute w-full sm:w-auto">
-            <iframe
-              width="100%"
-              height="300"
-              className="sm:w-[1080px] sm:h-[608px]"
-              src={`https://www.youtube.com/embed/${movieTrailer}?autoplay=1&mute=1`}
-              title="YouTube video player"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerPolicy="strict-origin-when-cross-origin"
-              allowFullScreen
-            ></iframe>
-            <button
-              onClick={toggleVideo}
-              className="px-[7px] text-white bg-black hover:bg-[#E50914] rounded-full absolute -top-5 -right-4"
-            >
-              <i className="fa-solid fa-xmark text-xl sm:text-2xl"></i>
-            </button>
+          <div className="fixed inset-0 bg-neutral-800 bg-opacity-75 z-50 flex items-center justify-center p-4">
+            <div className="relative w-full max-w-6xl">
+              <button
+                onClick={toggleVideo}
+                className="m-4 absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors"
+                aria-label="Close video"
+              >
+                <svg
+                  className="w-8 h-8"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+              </button>
+              <div className="relative w-full aspect-video rounded-lg overflow-hidden shadow-2xl">
+                <iframe
+                  src={`https://www.youtube.com/embed/${movieTrailer}?autoplay=1&mute=1`}
+                  className="absolute top-0 left-0 w-full h-full"
+                  title="YouTube video player"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                  loading="lazy"
+                ></iframe>
+              </div>
+            </div>
           </div>
         ) : (
           showTrailer && (
@@ -143,9 +157,20 @@ const MovieDetails = () => {
               </p>
               <button
                 onClick={toggleVideo}
-                className="px-[7px] text-white bg-black hover:bg-[#E50914] rounded-full absolute -top-5 -right-4"
+                className="m-4 absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors"
+                aria-label="Close video"
               >
-                <i className="fa-solid fa-xmark text-xl sm:text-2xl"></i>
+                <svg
+                  className="w-8 h-8"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
               </button>
             </div>
           )
