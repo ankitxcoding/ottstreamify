@@ -13,7 +13,7 @@ const Header = () => {
     <div className="flex flex-col sm:flex-row justify-between bg-gradient-to-b from-black absolute top-0 w-full">
       <div className="mx-auto sm:mx-4 w-32 sm:w-52 flex justify-center sm:justify-start">
         <Link to={"/"}>
-          <img src={logo} alt="logo" className="w-full" />
+          <img src={logo} alt="logo" className="w-full mix-blend-screen" />
         </Link>
       </div>
       <div className="flex items-center mx-4">
