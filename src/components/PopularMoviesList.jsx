@@ -36,11 +36,53 @@ const PopularMoviesList = () => {
   };
 
   if (loading && popularMovies.length === 0) {
-    return <p className="text-white text-center">Loading...</p>;
+    return (
+      <div
+        className="relative flex justify-center items-center min-h-screen"
+        style={{
+          backgroundImage: `url(${bgImg})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="absolute top-0 left-0 right-0 bottom-0 flex justify-center items-center bg-black bg-opacity-50">
+          <div className="flex flex-col justify-center items-center">
+            <div
+              className="inline-block h-16 w-16 animate-spin rounded-full border-4 border-solid border-red-600 border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
+              role="status"
+            >
+              <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
+                Loading...
+              </span>
+            </div>
+            <p className="text-white mt-4 text-lg sm:text-xl">
+              Please wait, loading movies...
+            </p>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   if (error) {
-    return <p>{error}</p>;
+    return (
+      <div
+        className="bg-contain flex justify-center items-center min-h-screen pt-16 sm:pt-16 relative"
+        style={{ backgroundImage: `url(${bgImg})`, backgroundSize: "auto" }}
+      >
+        <div className="absolute top-0 left-0 right-0 bottom-0 flex flex-col justify-center items-center bg-black bg-opacity-70 px-4 sm:px-8">
+          <p className="m-2 text-white text-3xl sm:text-4xl text-center">
+            {error}
+          </p>
+          <p className="m-2 text-white text-xl sm:text-3xl text-center">
+            This may be a network issue!
+          </p>
+          <p className="m-2 text-white text-lg sm:text-2xl text-center">
+            If you're using Jio in India, try using a VPN.
+          </p>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -74,7 +116,11 @@ const PopularMoviesList = () => {
           </button>
         </div>
       </div>
-      {searchLoading && <p>Loading search results...</p>}
+      {searchLoading && (
+        <div className="absolute top-0 left-0 right-0 bottom-0 flex justify-center items-center">
+          <p className="text-white text-center">Loading search results...</p>
+        </div>
+      )}
       {searchError && <p>{searchError}</p>}
       <InfiniteScroll
         dataLength={
