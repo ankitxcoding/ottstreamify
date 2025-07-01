@@ -2,8 +2,7 @@ export const OPTIONS = {
   method: "GET",
   headers: {
     accept: "application/json",
-    Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmZTExNDk0YmZkYzgxNWYyZDE5OTI3NzM3ZTE0M2I5OCIsInN1YiI6IjY1Y2RhYWFlMzEyMzQ1MDE3YmJhYzczOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.AGZ7T52BT2xFTLtG5yTvRLL6KinhW5F6teX32RWjxNI",
+    Authorization: `Bearer ${import.meta.env.VITE_TMDB_BEARER_TOKEN}`,
   },
 };
 
@@ -27,5 +26,6 @@ export const TVSHOW_STREAMING_URL = "https://player.vidsrc.co/embed/tv/";
 export const TVSHOW_STREAMING_PARAMETER =
   "/1/1?autoplay=false&autonext=true&nextbutton=true&poster=true&primarycolor=6C63FF&secondarycolor=9F9BFF&iconcolor=FFFFFF&fontcolor=FFFFFF&fontsize=16px&opacity=0.5&font=Poppins";
 
-export const TVSHOWS_EXTERNAL_DETAILS =
-  "/external_ids?api_key=fe11494bfdc815f2d19927737e143b98";
+export const TVSHOWS_EXTERNAL_DETAILS = `/external_ids?api_key=${
+  import.meta.env.VITE_TMDB_API_KEY
+}`;
