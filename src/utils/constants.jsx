@@ -29,3 +29,11 @@ export const TVSHOW_STREAMING_PARAMETER =
 export const TVSHOWS_EXTERNAL_DETAILS = `/external_ids?api_key=${
   import.meta.env.VITE_TMDB_API_KEY
 }`;
+
+export const GITHUB_URL = "https://github.com/ankitxcoding/";
+
+export const LINKEDIN_URL = "https://www.linkedin.com/in/ankitz9/";
+
+export const TWITTER_URL = "https://twitter.com/theankitz9";
+
+export const INSTAGRAM_URL = "https://www.instagram.com/ankitz9/";
