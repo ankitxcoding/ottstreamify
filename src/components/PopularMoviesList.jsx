@@ -18,7 +18,7 @@ const PopularMoviesList = () => {
     fetchNextPage,
     hasMore: hasMoreSearchResults,
     resetSearch,
-  } = useMovieSearch(searchQuery);
+  } = useMovieSearch(searchQuery, 800);
 
   const handleFetchData = () => {
     if (searchQuery.trim()) {

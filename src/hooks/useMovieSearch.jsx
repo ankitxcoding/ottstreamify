@@ -1,16 +1,26 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { OPTIONS } from "../utils/constants";
 
-const useMovieSearch = (query) => {
+const useMovieSearch = (query, debounceTime = 500) => {
   const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
+  const [debouncedQuery, setDebouncedQuery] = useState(query);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedQuery(query);
+      setPage(1);
+    }, debounceTime);
+
+    return () => clearTimeout(timer);
+  }, [query, debounceTime]);
 
   useEffect(() => {
     const fetchSearchResults = async () => {
-      const trimmedQuery = query.trim();
+      const trimmedQuery = debouncedQuery.trim();
       if (!trimmedQuery) {
         setSearchResults([]);
         setHasMore(true);
@@ -45,17 +55,17 @@ const useMovieSearch = (query) => {
     };
 
     fetchSearchResults();
-  }, [query, page]);
+  }, [debouncedQuery, page]);
 
-  const fetchNextPage = () => {
+  const fetchNextPage = useCallback(() => {
     setPage((prevPage) => prevPage + 1);
-  };
+  }, []);
 
-  const resetSearch = () => {
+  const resetSearch = useCallback(() => {
     setPage(1);
     setSearchResults([]);
     setHasMore(true);
-  };
+  }, []);
 
   return { searchResults, loading, error, hasMore, fetchNextPage, resetSearch };
 };

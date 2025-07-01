@@ -18,7 +18,7 @@ const PopularTVShowsList = () => {
     fetchNextPage,
     hasMore: hasMoreSearchResults,
     resetSearch,
-  } = useTVShowSearch(searchQuery);
+  } = useTVShowSearch(searchQuery, 800);
 
   const handleFetchData = () => {
     if (searchQuery.trim()) {
