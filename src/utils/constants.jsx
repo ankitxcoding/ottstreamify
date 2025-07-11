@@ -16,12 +16,12 @@ export const BASE_BACKDROP_URL = "https://image.tmdb.org/t/p/original";
 
 export const IMDB_URL = "https://www.imdb.com/title/";
 
-export const MOVIE_STREAMING_URL = "https://player.vidsrc.co/embed/movie/";
+export const MOVIE_STREAMING_URL = "https://autoembed.pro/embed/movie/";
 
 export const MOVIE_STREAMING_PARAMETER =
   "?autoplay=false&autonext=true&nextbutton=true&poster=true&primarycolor=6C63FF&secondarycolor=9F9BFF&iconcolor=FFFFFF&fontcolor=FFFFFF&fontsize=16px&opacity=0.5&font=Poppins";
 
-export const TVSHOW_STREAMING_URL = "https://player.vidsrc.co/embed/tv/";
+export const TVSHOW_STREAMING_URL = "https://autoembed.pro/embed/tv/";
 
 export const TVSHOW_STREAMING_PARAMETER =
   "/1/1?autoplay=false&autonext=true&nextbutton=true&poster=true&primarycolor=6C63FF&secondarycolor=9F9BFF&iconcolor=FFFFFF&fontcolor=FFFFFF&fontsize=16px&opacity=0.5&font=Poppins";
