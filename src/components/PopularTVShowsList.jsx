@@ -63,7 +63,7 @@ const PopularTVShowsList = () => {
             </p>
             <p className="text-white m-2 text-lg sm:text-xl text-center">
               <span className="font-semibold">Note:</span> Jio users in India
-              may need a VPN to access movies.
+              may need a VPN to access contents.
             </p>
           </div>
         </div>
