@@ -55,8 +55,15 @@ const PopularTVShowsList = () => {
                 Loading...
               </span>
             </div>
-            <p className="text-white mt-4 text-lg sm:text-xl">
-              Please wait, loading tv shows...
+            <p className="text-white m-4 text-xl sm:text-3xl text-center">
+              Loading tv shows, please wait...
+            </p>
+            <p className="text-white m-2 text-lg sm:text-xl text-center">
+              If loading takes too long, try refreshing the page or using a VPN.
+            </p>
+            <p className="text-white m-2 text-lg sm:text-xl text-center">
+              <span className="font-semibold">Note:</span> Jio users in India
+              may need a VPN to access movies.
             </p>
           </div>
         </div>
@@ -75,10 +82,12 @@ const PopularTVShowsList = () => {
             {error}
           </p>
           <p className="m-2 text-white text-xl sm:text-3xl text-center">
-            This may be a network issue!
+            There may be a network issue. Please try refreshing the page.
           </p>
+          <p className="text-white text-lg sm:text-2xl text-center">OR</p>
           <p className="m-2 text-white text-lg sm:text-2xl text-center">
-            If you're using Jio in India, try using a VPN.
+            <span className="font-semibold">Note:</span> Jio users in India may
+            need a VPN to access contents.
           </p>
         </div>
       </div>
