@@ -16,15 +16,15 @@ export const BASE_BACKDROP_URL = "https://image.tmdb.org/t/p/original";
 
 export const IMDB_URL = "https://www.imdb.com/title/";
 
-export const MOVIE_STREAMING_URL = "https://player.vidsrc.co/embed/movie/";
+export const MOVIE_STREAMING_URL = "https://player.vidplus.to/embed/movie/";
 
 export const MOVIE_STREAMING_PARAMETER =
-  "?autoplay=true&poster=true&primarycolor=db0000&secondarycolor=a2a2a2&iconcolor=eefdec";
+  "?autoplay=true&autonext=true&nextbutton=true&poster=true&title=true&watchparty=false&chromecast=true&servericon=true&primarycolor=FF0000&secondarycolor=9F9BFF&iconcolor=FFFFFF";
 
-export const TVSHOW_STREAMING_URL = "https://player.vidsrc.co/embed/tv/";
+export const TVSHOW_STREAMING_URL = "https://player.vidplus.to/embed/tv/";
 
 export const TVSHOW_STREAMING_PARAMETER =
-  "/1/1?autoplay=true&autonext=true&nextbutton=true&poster=true&primarycolor=db0000&secondarycolor=a2a2a2&iconcolor=eefdec";
+  "/1/1?autoplay=true&autonext=true&nextbutton=true&poster=true&title=true&watchparty=false&chromecast=true&episodelist=true&servericon=true&primarycolor=FF0000&secondarycolor=9F9BFF&iconcolor=FFFFFF";
 
 export const TVSHOWS_EXTERNAL_DETAILS = `/external_ids?api_key=${
   import.meta.env.VITE_TMDB_API_KEY
